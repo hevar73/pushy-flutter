@@ -22,7 +22,11 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
+    if (android.hasProperty('namespace')){
+        namespace 'me.pushy.sdk.flutter'
+    }
+
+    compileSdkVersion 31
 
     defaultConfig {
         minSdkVersion 16
@@ -34,5 +38,5 @@ android {
 
 dependencies {
     // Pushy Android SDK
-    implementation 'me.pushy:sdk:1.0.93'
+    implementation 'me.pushy:sdk:1.0.120'
 }
