@@ -189,7 +189,7 @@ class Pushy {
     return await _channel.invokeMethod('multiTopicSubscribe', topics);
   }
 
-  static Future<void> unsubscribe(String topic) async {
+  static Future<dynamic> unsubscribe(String topic) async {
     // Running on Web?
     if (kIsWeb) {
       return PushyWebSDK.unsubscribe(topic);
