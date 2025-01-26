@@ -196,7 +196,11 @@ class Pushy {
     }
 
     // Attempt to unsubscribe the device from topic
-    return await _channel.invokeMethod('unsubscribe', <dynamic>[topic]);
+    final data = await _channel.invokeMethod('unsubscribe', <dynamic>[topic]);
+
+    print('data: $data');
+
+    return data;
   }
 
   static void setEnterpriseConfig(String apiEndpoint, String mqttEndpoint) {
