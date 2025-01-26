@@ -192,7 +192,7 @@ class Pushy {
   static Future<dynamic> unsubscribe(String topic) async {
     // Running on Web?
     if (kIsWeb) {
-      return PushyWebSDK.unsubscribe(topics);
+      return PushyWebSDK.unsubscribe(topic);
     }
     // Attempt to unsubscribe the device from topic
     final data = await _channel.invokeMethod('unsubscribe', <dynamic>[topic]);
