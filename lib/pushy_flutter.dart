@@ -165,14 +165,14 @@ class Pushy {
     }
   }
 
-  static Future<void> subscribe(String topic) async {
+  static Future<void> subscribe(dynamic topics) async {
     // Running on Web?
     if (kIsWeb) {
-      return PushyWebSDK.subscribe(topic);
+      return PushyWebSDK.subscribe(topics);
     }
 
-    // Attempt to subscribe the device to topic
-    return await _channel.invokeMethod('subscribe', <dynamic>[topic]);
+    // Attempt to subscribe the device to topic(s)
+    return await _channel.invokeMethod('subscribe', <dynamic>[topics]);
   }
 
   static Future<void> multiTopicSubscribe(List<String> topics) async {
@@ -192,9 +192,8 @@ class Pushy {
   static Future<dynamic> unsubscribe(String topic) async {
     // Running on Web?
     if (kIsWeb) {
-      return PushyWebSDK.unsubscribe(topic);
+      return PushyWebSDK.unsubscribe(topics);
     }
-
     // Attempt to unsubscribe the device from topic
     final data = await _channel.invokeMethod('unsubscribe', <dynamic>[topic]);
 
@@ -203,7 +202,7 @@ class Pushy {
     return data;
   }
 
-  static void setEnterpriseConfig(String apiEndpoint, String mqttEndpoint) {
+  static void setEnterpriseConfig(String? apiEndpoint, String? mqttEndpoint) {
     // Running on Web?
     if (kIsWeb) {
       return PushyWebSDK.setEnterpriseConfig(apiEndpoint);
